@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { ChakraProvider, Box, Flex, Text, Icon, Link, SimpleGrid } from '@chakra-ui/react';
+import { ChakraProvider, Box, Flex, Text, Icon, Link, SimpleGrid, HStack } from '@chakra-ui/react';
 import { FaGithub, FaCloudSun } from 'react-icons/fa';
+import { PaginationItems, PaginationNextTrigger, PaginationPrevTrigger, PaginationRoot } from './components/ui/pagination';
+
 import NewsCard from './newscard';
 
 function App() {
@@ -73,6 +75,14 @@ function App() {
           })
         }
       </SimpleGrid>
+              
+      <PaginationRoot>
+          <HStack>
+            <PaginationPrevTrigger/>
+            <PaginationItems />
+            <PaginationNextTrigger/>
+          </HStack>
+        </PaginationRoot>
 
       {/* Footer */}
       <Box as="footer" mt={4} p={4} textAlign="center" borderTopWidth="1px" bg="teal.500">

@@ -1,40 +1,47 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Center } from "@chakra-ui/react";
 
 const NewsCard = ({ title, description, imageUrl, images }) => {
     
+    debugger;
     if(images.length > 0){
-        debugger;
         var imageSrc = images[0].url
     }
 
     return (
-        <Box 
-            p={2} // Reduced padding
+        <Box
             borderWidth="1px" 
             borderRadius="md" 
-            shadow="sm" // Lighter shadow
+            boxShadow="lg"  // Applied larger shadow for better effect
             bg="white"
-            height="300px" // Set a fixed height for uniformity
+            height="auto" 
             display="flex"
-            flexDirection="row"
-            justifyContent="center"
+            flexDirection="column"
             alignItems="center"
+            overflow="hidden" // Prevent content overflow
         >
-            <Box width={'50%'}>    
+            {/* Image Section */}
+            <Box width="100%" height="200px" overflow="hidden">
                 {imageSrc ? (
                     <img
                         src={imageSrc}
                         alt={title}
-                        className="w-full h-48 object-cover"
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     />
                 ) : (
-                    <div className="w-full h-48 bg-gray-200 flex items-center justify-center">
-                        <span className="text-gray-500">No Image Available</span>
-                    </div>
+                    <Center 
+                        className="bg-gray-200 flex items-center justify-center"
+                        style={{ width: '100%', height: '100%' }}
+                    >
+                        No Image Available
+                    </Center>
                 )}
             </Box>
-            <Box p={'10px'} className="p-4">
-                <h2 style={{fontWeight:'bold'}} className="text-xl font-bold mb-2">{title}</h2>
+
+            {/* Title and Description Section */}
+            <Box p={3} textAlign="center" width="100%">
+                <h2 style={{ fontWeight: 'bold' }} className="text-xl font-bold mb-2">
+                    {title}
+                </h2>
                 <p className="text-gray-700">{description}</p>
             </Box>
         </Box>
